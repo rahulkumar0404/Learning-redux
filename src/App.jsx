@@ -13,7 +13,6 @@ function App() {
   const showCart = useSelector((state) => state.ui.cartIsVisible);
   const cart = useSelector((state) => state.cart);
   const notification = useSelector((state) => state.ui.notification);
-  const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
     const sendCartData = async () => {
       dispatch(
@@ -57,7 +56,7 @@ function App() {
         })
       );
     });
-  }, [cart, dispatch, isMounted]);
+  }, [cart, dispatch]);
 
   return (
     <Fragment>
