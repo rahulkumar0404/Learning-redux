@@ -4,7 +4,7 @@ import Cart from './components/Cart/Cart.jsx';
 import Layout from './components/Layout/Layout.jsx';
 import Products from './components/Shop/Products.jsx';
 import Notification from './components/UI/Notification.jsx';
-import { sendCartData } from './store/cart-slice.js';
+import { sendCartData, fetchCartData } from './store/cart-actions.js';
 
 let isInitialValue = true;
 function App() {
@@ -59,12 +59,16 @@ function App() {
   // }, [cart, dispatch]);
 
   useEffect(() => {
+    dispatch(fetchCartData());
+  }, [dispatch]);
+  useEffect(() => {
     if (isInitialValue) {
       isInitialValue = false;
       return;
     }
     dispatch(sendCartData(cart));
   }, [cart, dispatch]);
+
   return (
     <Fragment>
       {notification && (
